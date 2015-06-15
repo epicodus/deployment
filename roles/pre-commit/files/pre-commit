@@ -1,0 +1,8 @@
+#!/bin/sh
+username=`git config user.name`
+if [ "$username" = "" ]; then
+  echo "Please set your Git user name before committing."
+  exit 1
+else
+  exit 0
+fi

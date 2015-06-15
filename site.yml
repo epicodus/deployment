@@ -1,0 +1,34 @@
+---
+- hosts: test_machines
+  roles:
+    - { role: root_setup, become: yes }
+    - dot_files
+    - dependencies
+    - pre-commit
+    - postgres
+    - { role: guest_permissions, become: yes }
+
+
+
+
+
+
+
+
+
+
+
+    # THIS SHUTS DOWN ALL COMPUTERS; BE CAREFUL!!!!!!!!!!
+    # - { role: shutdown, become: yes }
+
+
+
+
+
+
+
+
+
+  environment:
+    PATH: /usr/local/bin:{{ ansible_env.PATH }}
+    PGDATA: "/System/Library/User Template/English.lproj/.postgres"

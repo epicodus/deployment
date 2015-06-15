@@ -1,0 +1,74 @@
+---
+# - name: brew doctor
+#   shell: brew doctor
+
+- name: updates homebrew itself
+  homebrew: update_homebrew=yes
+
+- name: upgrades all homebrew packages
+  homebrew: upgrade_all=yes
+
+- name: clean up homebrew
+  shell: brew cleanup
+
+- name: prune homebrew
+  shell: brew prune
+
+- name: taps homebrew/dups
+  homebrew_tap: tap=homebrew/dupes
+
+- name: taps homebrew/versions
+  homebrew_tap: tap=homebrew/versions
+
+- name: taps homebrew/php
+  homebrew_tap: tap=homebrew/php
+
+- name: install git
+  homebrew: name=git
+
+- name: install heroku-toolbelt
+  homebrew: name=heroku-toolbelt
+
+- name: install postgres
+  homebrew: name=postgres
+
+- name: install ruby
+  homebrew: name=ruby
+
+- name: install php56
+  homebrew: name=php56
+
+- name: install php56-pdo-pgsql
+  homebrew: name=php56-pdo-pgsql
+
+- name: install composer
+  homebrew: name=composer
+
+- name: install drush
+  homebrew: name=drush
+
+- name: install node
+  homebrew: name=node
+
+- name: install watchman
+  homebrew: name=watchman
+
+- name: install bundler
+  shell: gem install bundler
+
+- name: install simple-git-pair
+  shell: gem install simple-git-pair
+
+- name: update all npm packages
+  shell: npm update -g
+
+- name: install bower
+  npm: name=bower global=yes state=latest
+
+- name: install ember-cli
+  npm: name=ember-cli global=yes state=latest
+
+# Java
+# - homebrew: name=javarepl
+# - homebrew: name=brew-cask
+# - homebrew_cask: name=java

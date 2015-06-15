@@ -1,0 +1,19 @@
+---
+
+- name: set epicodus permission for /System/Library/User Template
+  file: path="/System/Library/User Template" owner=epicodus recurse=yes
+
+# - name: install homebrew
+#   shell: curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+
+- name: create /usr/local with epicodus permission
+  file: path=/usr/local owner=epicodus recurse=yes
+
+- name: create /opt directory with epicodus permission
+  file: path=/opt state=directory owner=epicodus recurse=yes
+
+- name: create /opt/gem directory
+  file: path=/opt/gem state=directory
+
+- name: give epicodus permission for /Library/Caches/Homebrew
+  file: path=/Library/Caches/Homebrew owner=epicodus recurse=yes

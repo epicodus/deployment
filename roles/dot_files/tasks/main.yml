@@ -1,0 +1,45 @@
+---
+- name: copy bash_profile
+  copy: src=bash_profile dest="/System/Library/User Template/English.lproj/.bash_profile"
+
+- name: make .atom directory
+  file: path="/System/Library/User Template/English.lproj/.atom" state=directory
+
+- name: copy .atom/config.cson
+  copy: src=atom dest="/System/Library/User Template/English.lproj/.atom/config.cson"
+
+- name: copy .gemrc
+  copy: src=gemrc dest="/System/Library/User Template/English.lproj/.gemrc"
+
+- name: copy .git_pairs
+  copy: src=git_pairs dest="/System/Library/User Template/English.lproj/.git_pairs"
+
+- name: copy .gitconfig
+  copy: src=gitconfig dest="/System/Library/User Template/English.lproj/.gitconfig"
+
+- name: copy .gitignore_global
+  copy: src=gitignore_global dest="/System/Library/User Template/English.lproj/.gitignore_global"
+
+- name: copy .railsrc
+  copy: src=railsrc dest="/System/Library/User Template/English.lproj/.railsrc"
+
+- name: copy .rspec
+  copy: src=rspec dest="/System/Library/User Template/English.lproj/.rspec"
+
+- name: make Google directory
+  file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google" state=directory
+
+- name: make Chrome directory
+  file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome" state=directory
+
+- name: make Default directory
+  file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Default" state=directory
+
+- name: copy Preferences
+  copy: src=chrome_preferences dest="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Default/Preferences"
+
+- name: make Consent To Send Stats file
+  file: state=touch path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Consent To Send Stats"
+
+- name: make First Run file
+  file: state=touch path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/First Run"
