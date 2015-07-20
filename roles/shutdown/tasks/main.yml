@@ -1,3 +1,0 @@
----
-- name: shut down computers
-  command: shutdown -h now
