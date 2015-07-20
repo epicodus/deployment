@@ -1,20 +1,25 @@
 ---
+# NOT FOR NEW MACHINES
 # - name: brew doctor
 #   shell: brew doctor
+#
+# - name: updates homebrew itself
+#   homebrew: update_homebrew=yes
+#
+# - name: upgrades all homebrew packages
+#   homebrew: upgrade_all=yes
+#
+# - name: clean up homebrew
+#   shell: brew cleanup
+#
+# - name: prune homebrew
+#   shell: brew prune
+#
+# - name: update all npm packages
+#   shell: npm update -g
 
-- name: updates homebrew itself
-  homebrew: update_homebrew=yes
 
-- name: upgrades all homebrew packages
-  homebrew: upgrade_all=yes
-
-- name: clean up homebrew
-  shell: brew cleanup
-
-- name: prune homebrew
-  shell: brew prune
-
-- name: taps homebrew/dups
+- name: taps homebrew/dupes
   homebrew_tap: tap=homebrew/dupes
 
 - name: taps homebrew/versions
@@ -58,9 +63,6 @@
 
 - name: install simple-git-pair
   shell: gem install simple-git-pair
-
-- name: update all npm packages
-  shell: npm update -g
 
 - name: install bower
   npm: name=bower global=yes state=latest
