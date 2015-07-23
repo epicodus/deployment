@@ -3,6 +3,7 @@
   roles:
     - { role: root_setup, become: yes }
     - dot_files
+    - { role: blockinfile, become: yes }
     - dependencies
     - pre-commit
     - postgres

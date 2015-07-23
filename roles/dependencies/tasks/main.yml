@@ -28,6 +28,9 @@
 - name: taps homebrew/php
   homebrew_tap: tap=homebrew/php
 
+- name: taps homebrew/apache
+  homebrew_tap: tap=homebrew/apache
+
 - name: install git
   homebrew: name=git
 
@@ -40,11 +43,8 @@
 - name: install ruby
   homebrew: name=ruby
 
-- name: install php56
-  homebrew: name=php56
-
-- name: install php56-pdo-pgsql
-  homebrew: name=php56-pdo-pgsql
+- name: install php56, httpd24, mysql, phpmyadmin
+  shell: brew install httpd24 php56 --homebrew-apxs mysql phpmyadmin
 
 - name: install composer
   homebrew: name=composer
@@ -69,8 +69,3 @@
 
 - name: install ember-cli
   npm: name=ember-cli global=yes state=latest
-
-# Java
-# - homebrew: name=javarepl
-# - homebrew: name=brew-cask
-# - homebrew_cask: name=java
