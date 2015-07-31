@@ -2,9 +2,9 @@
 - hosts: epicodus_west
   roles:
     - { role: root_setup, become: yes }
-    - dot_files
     - { role: blockinfile, become: yes }
     - dependencies
+    - dot_files
     - pre-commit
     - postgres
     - { role: guest_permissions, become: yes }
