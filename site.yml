@@ -1,5 +1,5 @@
 ---
-- hosts: epicodus_west
+- hosts: epicodus_east
   roles:
     - { role: root_setup, become: yes }
     - { role: blockinfile, become: yes }
@@ -11,3 +11,4 @@
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: "/System/Library/User Template/English.lproj/.postgres"
+    HOMEBREW_CASK_OPTS: "--appdir=/Applications"

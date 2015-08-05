@@ -19,53 +19,71 @@
 #   shell: npm update -g
 
 
-- name: taps homebrew/dupes
-  homebrew_tap: tap=homebrew/dupes
+# - name: taps homebrew/dupes
+#   homebrew_tap: tap=homebrew/dupes
+#
+# - name: taps homebrew/versions
+#   homebrew_tap: tap=homebrew/versions
+#
+# - name: taps homebrew/php
+#   homebrew_tap: tap=homebrew/php
+#
+# - name: taps homebrew/apache
+#   homebrew_tap: tap=homebrew/apache
+#
+# - name: install git
+#   homebrew: name=git
+#
+# - name: install heroku-toolbelt
+#   homebrew: name=heroku-toolbelt
+#
+# - name: install postgres
+#   homebrew: name=postgres
+#
+# - name: install ruby
+#   homebrew: name=ruby
+#
+# - name: install php56, httpd24, mysql, phpmyadmin
+#   shell: brew install httpd24 php56 --homebrew-apxs mysql phpmyadmin
+#
+# - name: install composer
+#   homebrew: name=composer
+#
+# - name: install drush
+#   homebrew: name=drush
+#
+# - name: install node
+#   homebrew: name=node
+#
+# - name: install watchman
+#   homebrew: name=watchman
+#
+# - name: install bundler
+#   shell: gem install bundler
+#
+# - name: install simple-git-pair
+#   shell: gem install simple-git-pair
+#
+# - name: install bower
+#   npm: name=bower global=yes state=latest
+#
+# - name: install ember-cli
+#   npm: name=ember-cli global=yes state=latest
 
-- name: taps homebrew/versions
-  homebrew_tap: tap=homebrew/versions
+# Java
+- name: install homebrew cask
+  shell: brew install caskroom/cask/brew-cask
 
-- name: taps homebrew/php
-  homebrew_tap: tap=homebrew/php
+- name: install gradle
+  homebrew: name=gradle
 
-- name: taps homebrew/apache
-  homebrew_tap: tap=homebrew/apache
+- name: install java
+  homebrew_cask: name=java
+  # sudo: yes
 
-- name: install git
-  homebrew: name=git
+- name: install javarepl
+  homebrew: name=javarepl
 
-- name: install heroku-toolbelt
-  homebrew: name=heroku-toolbelt
-
-- name: install postgres
-  homebrew: name=postgres
-
-- name: install ruby
-  homebrew: name=ruby
-
-- name: install php56, httpd24, mysql, phpmyadmin
-  shell: brew install httpd24 php56 --homebrew-apxs mysql phpmyadmin
-
-- name: install composer
-  homebrew: name=composer
-
-- name: install drush
-  homebrew: name=drush
-
-- name: install node
-  homebrew: name=node
-
-- name: install watchman
-  homebrew: name=watchman
-
-- name: install bundler
-  shell: gem install bundler
-
-- name: install simple-git-pair
-  shell: gem install simple-git-pair
-
-- name: install bower
-  npm: name=bower global=yes state=latest
-
-- name: install ember-cli
-  npm: name=ember-cli global=yes state=latest
+- name: install android studio
+  homebrew_cask: name=android-studio
+  # sudo: yes
