@@ -1,6 +1,6 @@
 ---
-- name: copy bash_profile
-  copy: src=bash_profile dest="/System/Library/User Template/English.lproj/.bash_profile"
+# - name: copy bash_profile
+#   copy: src=bash_profile dest="/System/Library/User Template/English.lproj/.bash_profile"
 #
 # - name: make .atom directory
 #   file: path="/System/Library/User Template/English.lproj/.atom" state=directory
@@ -87,6 +87,9 @@
 - name: make AndroidStudio1.3 directory
   file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3" state=directory
 
+- name: set permissions for /Users/Shared/Android
+  file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx
+
 - name: make options directory
   file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options" state=directory
 
@@ -99,5 +102,17 @@
 - name: copy jdk.table.xml
   copy: src=jdk_table dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/jdk.table.xml"
 
-- name: set permissions for /Users/Shared/Android
-  file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx
+- name: make codestyles directory
+  file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/codestyles" state=directory
+
+- name: copy Default_1_
+  copy: src=Default_1_ dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/codestyles/Default_1_.xml"
+
+- name: copy code_style_schemes
+  copy: src=code_style_schemes dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/code.style.schemes.xml"
+
+- name: copy options_xml
+  copy: src=options_xml dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/options.xml"
+
+- name: copy other_xml
+  copy: src=other_xml dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/other.xml"
