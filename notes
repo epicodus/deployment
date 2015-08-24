@@ -1,4 +1,0 @@
-export ANSIBLE_HOSTS=/Users/chris/desktop/ansible/hosts
-
-sudo chmod -R o+w /usr/local
-sudo chmod -R o+w /Library/Caches/Homebrew

@@ -1,5 +1,0 @@
----
-- name: copy pre-commit
-  copy: src=pre-commit dest=/usr/local/share/git-core/templates/hooks/pre-commit
-- name: change permissions for pre-commit
-  file: path=/usr/local/share/git-core/templates/hooks/pre-commit mode=0755

@@ -1,118 +1,99 @@
 ---
-# - name: copy bash_profile
-#   copy: src=bash_profile dest="/System/Library/User Template/English.lproj/.bash_profile"
-#
-# - name: make .atom directory
-#   file: path="/System/Library/User Template/English.lproj/.atom" state=directory
-#
-# - name: copy .atom/config.cson
-#   copy: src=atom dest="/System/Library/User Template/English.lproj/.atom/config.cson"
-#
-# - name: copy .gemrc
-#   copy: src=gemrc dest="/System/Library/User Template/English.lproj/.gemrc"
-#
-# - name: copy .git_pairs
-#   copy: src=git_pairs dest="/System/Library/User Template/English.lproj/.git_pairs"
-#
-# - name: copy .gitconfig
-#   copy: src=gitconfig dest="/System/Library/User Template/English.lproj/.gitconfig"
-#
-# - name: copy .gitignore_global
-#   copy: src=gitignore_global dest="/System/Library/User Template/English.lproj/.gitignore_global"
-#
-# - name: copy .railsrc
-#   copy: src=railsrc dest="/System/Library/User Template/English.lproj/.railsrc"
-#
-# - name: copy .rspec
-#   copy: src=rspec dest="/System/Library/User Template/English.lproj/.rspec"
-#
-# - name: make Google directory
-#   file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google" state=directory
-#
-# - name: make Chrome directory
-#   file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome" state=directory
-#
-# - name: make Default directory
-#   file: path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Default" state=directory
-#
-# - name: copy Preferences
-#   copy: src=chrome_preferences dest="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Default/Preferences"
-#
-# - name: make Consent To Send Stats file
-#   file: state=touch path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/Consent To Send Stats"
-#
-# - name: make First Run file
-#   file: state=touch path="/System/Library/User Template/English.lproj/Library/Application Support/Google/Chrome/First Run"
-#
+- name: copy dot files
+  copy: src={{ item }} dest="{{ guest_path }}/.{{ item }}"
+  with_items:
+    - "{{ dot_files }}"
+
+- name: make atom directory
+  file: path="{{ guest_path }}/.atom" state=directory
+
+- name: copy atom/config.cson
+  copy: src=atom dest="{{ guest_path }}/.atom/config.cson"
+
+- name: copy pre-commit
+  copy: src=pre-commit dest=/usr/local/share/git-core/templates/hooks/pre-commit
+
+- name: change permissions for pre-commit
+  file: path=/usr/local/share/git-core/templates/hooks/pre-commit mode=0755
+
+- name: make Google directory
+  file: path="{{ guest_path }}/Library/Application Support/Google" state=directory
+
+- name: make Chrome directory
+  file: path="{{ guest_path }}/Library/Application Support/Google/Chrome" state=directory
+
+- name: make Default directory
+  file: path="{{ guest_path }}/Library/Application Support/Google/Chrome/Default" state=directory
+
+- name: copy Preferences
+  copy: src=chrome_preferences dest="{{ guest_path }}/Library/Application Support/Google/Chrome/Default/Preferences"
+
+- name: make Consent To Send Stats file
+  file: state=touch path="{{ guest_path }}/Library/Application Support/Google/Chrome/Consent To Send Stats"
+
+- name: make First Run file
+  file: state=touch path="{{ guest_path }}/Library/Application Support/Google/Chrome/First Run"
+
 ## PHP
-# - name: copy config_inc_php
-#   copy: src=config_inc_php dest="/usr/local/share/phpmyadmin/config.inc.php"
+- name: copy config_inc_php
+  copy: src=config_inc_php dest="/usr/local/share/phpmyadmin/config.inc.php"
+
+- name: add apache2 http.conf content
+  blockinfile:
+    dest: /usr/local/etc/apache2/2.4/httpd.conf
+    content: |
+      AddType application/x-httpd-php .php
+      DirectoryIndex index.html index.php
+      <Directory "/">
+          Require all granted
+      </Directory>
+      LoadModule expires_module libexec/mod_expires.so
+      LoadModule deflate_module libexec/mod_deflate.so
+      LoadModule rewrite_module libexec/mod_rewrite.so
+      Alias /phpmyadmin /usr/local/share/phpmyadmin
+      <Directory /usr/local/share/phpmyadmin/>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        <IfModule mod_authz_core.c>
+          Require all granted
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+          Order allow,deny
+          Allow from all
+        </IfModule>
+      </Directory>
+      ServerName localhost
+
+# Android Studio
+# - name: make AndroidStudio1.3 directory
+#   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.3" state=directory
 #
-# - name: add apache2 http.conf content
-#   blockinfile:
-#     dest: /usr/local/etc/apache2/2.4/httpd.conf
-#     content: |
-#       AddType application/x-httpd-php .php
-#       DirectoryIndex index.html index.php
-#       <Directory "/">
-#           Require all granted
-#       </Directory>
-#       LoadModule expires_module libexec/mod_expires.so
-#       LoadModule deflate_module libexec/mod_deflate.so
-#       LoadModule rewrite_module libexec/mod_rewrite.so
-#       Alias /phpmyadmin /usr/local/share/phpmyadmin
-#       <Directory /usr/local/share/phpmyadmin/>
-#         Options Indexes FollowSymLinks MultiViews
-#         AllowOverride All
-#         <IfModule mod_authz_core.c>
-#           Require all granted
-#         </IfModule>
-#         <IfModule !mod_authz_core.c>
-#           Order allow,deny
-#           Allow from all
-#         </IfModule>
-#       </Directory>
-#       ServerName localhost
+# - name: set permissions for /Users/Shared/Android
+#   file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx
 #
-# - name: start mysql server
-#   shell: mysql.server start
+# - name: make options directory
+#   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options" state=directory
 #
-# - name: set mysql root password
-#   shell: mysqladmin -u root password root
+# - name: copy idea.properties
+#   copy: src=idea_properties dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/idea.properties"
 #
-# - name: stop mysql server
-#   shell: mysql.server stop
-
-# Java
-- name: make AndroidStudio1.3 directory
-  file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3" state=directory
-
-- name: set permissions for /Users/Shared/Android
-  file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx
-
-- name: make options directory
-  file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options" state=directory
-
-- name: copy idea.properties
-  copy: src=idea_properties dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/idea.properties"
-
-- name: copy ide.general.xml
-  copy: src=ide_general dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/ide.general.xml"
-
-- name: copy jdk.table.xml
-  copy: src=jdk_table dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/jdk.table.xml"
-
-- name: make codestyles directory
-  file: path="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/codestyles" state=directory
-
-- name: copy Default_1_
-  copy: src=Default_1_ dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/codestyles/Default_1_.xml"
-
-- name: copy code_style_schemes
-  copy: src=code_style_schemes dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/code.style.schemes.xml"
-
-- name: copy options_xml
-  copy: src=options_xml dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/options.xml"
-
-- name: copy other_xml
-  copy: src=other_xml dest="/System/Library/User Template/English.lproj/Library/Preferences/AndroidStudio1.3/options/other.xml"
+# - name: copy ide.general.xml
+#   copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options/ide.general.xml"
+#
+# - name: copy jdk.table.xml
+#   copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options/jdk.table.xml"
+#
+# - name: make codestyles directory
+#   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/codestyles" state=directory
+#
+# - name: copy Default_1_
+#   copy: src=Default_1_ dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/codestyles/Default_1_.xml"
+#
+# - name: copy code_style_schemes
+#   copy: src=code_style_schemes dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options/code.style.schemes.xml"
+#
+# - name: copy options_xml
+#   copy: src=options_xml dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options/options.xml"
+#
+# - name: copy other_xml
+#   copy: src=other_xml dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.3/options/other.xml"

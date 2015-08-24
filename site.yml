@@ -1,13 +1,54 @@
 ---
-- hosts: epicodus_east
+- hosts: epicodus_west
+  vars:
+    guest_path: /System/Library/User Template/English.lproj
+    dot_files:
+      - bash_profile
+      - gemrc
+      - git_pairs
+      - gitconfig
+      - gitignore_global
+      - railsrc
+      - rspec
+    homebrew_packages:
+      - git
+      - heroku-toolbelt
+      - brew-cask
+      - ruby
+      - postgres
+      - node
+      - watchman
+      - composer
+      - drush
+      - httpd24
+      - mysql
+      - phpmyadmin
+      - gradle
+      - javarepl
+    homebrew_uninstall:
+      - chruby
+      - ruby-install
+    homebrew_taps:
+      - homebrew/dupes
+      - homebrew/versions
+      - homebrew/php
+      - homebrew/apache
+      - caskroom/cask
+    homebrew_casks:
+      # - android-studio
+    gems:
+      - bundler
+      - simple-git-pair
+    npm_packages:
+      - bower
+      - ember-cli
   roles:
-    - { role: root_setup, become: yes }
+    - { role: setup_root, become: yes }
     - { role: blockinfile, become: yes }
     - dependencies
     - dot_files
-    - pre-commit
-    - postgres
-    - { role: guest_permissions, become: yes }
+    # - meraki
+    - { role: setup_guest, become: yes }
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: "/System/Library/User Template/English.lproj/.postgres"

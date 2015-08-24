@@ -1,5 +1,4 @@
 ---
-
 - name: set epicodus permission for /System/Library/User Template
   file: path="/System/Library/User Template" owner=epicodus recurse=yes
 
