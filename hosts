@@ -1,7 +1,6 @@
 [epicodus_new]
 
 [epicodus_west]
-foo.local
 ###### epicodus-1.local
 ###### epicodus-2
 ###### epicodus-3
@@ -30,7 +29,6 @@ foo.local
 ###### epicodus-27
 ###### epicodus-28.local
 ###### epicodus-29
-# epicodus-31
 
 [epicodus_east]
 # epicodus-101.local

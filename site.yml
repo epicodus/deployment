@@ -35,7 +35,7 @@
       - homebrew/apache
       - caskroom/cask
     homebrew_casks:
-      # - android-studio
+      - android-studio
     gems:
       - bundler
       - simple-git-pair
@@ -43,12 +43,11 @@
       - bower
       - ember-cli
   roles:
-    - { role: setup_root, become: yes }
+    - role: setup_root
     - { role: blockinfile, become: yes }
     - dependencies
     - dot_files
-    # - meraki
-    - { role: setup_guest, become: yes }
+    - role: setup_guest
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: "/System/Library/User Template/English.lproj/.postgres"

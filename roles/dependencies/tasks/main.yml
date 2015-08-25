@@ -1,4 +1,7 @@
 ---
+- name: update and upgrade homebrew
+  homebrew: update_homebrew=yes upgrade_all=yes
+
 - name: homebrew taps
   homebrew_tap: tap={{ item }}
   with_items:
@@ -61,8 +64,8 @@
 - name: start mysql server
   shell: mysql.server start
 
-- name: set mysql root password
-  shell: mysqladmin -u root password root
+# - name: set mysql root password
+#   shell: mysqladmin -u root password root
 
 - name: stop mysql server
   shell: mysql.server stop
