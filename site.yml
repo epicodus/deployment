@@ -41,7 +41,6 @@
       - bower
       - ember-cli
     other_files:
-      - chrome_auto_updates.sh
       - meraki_agent.pkg
     plists:
       - de.appsolute.MAMP.plist # MAMP preferences, suppress MAMP PRO prompt
