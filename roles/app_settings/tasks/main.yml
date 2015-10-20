@@ -32,6 +32,17 @@
   copy: src=com.apple.launchservices.secure.plist dest="{{ guest_path }}/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
   sudo: yes
 
+
+- name: copy chrome_auto_updates.sh file
+  copy: src=chrome_auto_updates.sh dest=/Users/epicodus/chrome_auto_updates.sh
+
+- name: enable chrome automatic updates
+  command: python /Users/epicodus/chrome_auto_updates.sh
+  sudo: yes
+
+- name: remove chrome_auto_updates.sh file
+  file: path=/Users/epicodus/chrome_auto_updates.sh state=absent
+
 # ANDROID STUDIO
 # - name: make AndroidStudio1.3 directory
 #   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.3" state=directory
