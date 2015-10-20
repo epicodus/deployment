@@ -4,8 +4,8 @@
   with_items:
     - "{{ homebrew_taps }}"
 
-- name: install php56
-  homebrew: name=php56 install_options=with-homebrew-apxs
+# - name: install php56
+#   homebrew: name=php56 install_options=with-homebrew-apxs
 
 - name: install homebrew packages
   homebrew: name={{ item }}
