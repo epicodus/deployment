@@ -1,0 +1,46 @@
+---
+- name: copy profiles
+  copy: src={{ item }} dest=/Users/epicodus/{{ item }}
+  with_items:
+    - "{{ profiles }}"
+
+- name: copy scripts and packages
+  copy: src={{ item }} dest=/Users/epicodus/{{ item }}
+  with_items:
+    - "{{ other_files }}"
+
+- name: enable chrome automatic updates
+  command: python /Users/epicodus/chrome_auto_updates.sh
+  sudo: yes
+
+- name: copy plists
+  copy: src={{ item }} dest="{{ guest_path }}/Library/Preferences/{{ item }}"
+  sudo: yes
+  with_items:
+    - "{{ plists }}"
+
+# NEEDED FOR WIFI
+- name: install meraki_agent.pkg
+  shell: installer -pkg /Users/epicodus/meraki_agent.pkg -target /
+  sudo: yes
+
+- name: install meraki_sm_mdm.mobileconfig profile
+  shell: profiles -I -F /Users/epicodus/meraki_sm_mdm.mobileconfig
+  sudo: yes
+# NEEDED FOR WIFI
+
+- name: install profiles
+  shell: profiles -I -F /Users/epicodus/{{ item }}
+  sudo: yes
+  with_items:
+    - "{{ profiles }}"
+
+- name: remove profiles
+  file: path=/Users/epicodus/{{ item }} state=absent
+  with_items:
+    - "{{ profiles }}"
+
+- name: remove and scripts and packages
+  file: path=/Users/epicodus/{{ item }} state=absent
+  with_items:
+    - "{{ other_files }}"
