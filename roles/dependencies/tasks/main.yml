@@ -1,16 +1,8 @@
 ---
-- name: update and upgrade homebrew
-  homebrew: update_homebrew=yes upgrade_all=yes
-
 - name: homebrew taps
   homebrew_tap: tap={{ item }}
   with_items:
     - "{{ homebrew_taps }}"
-
-- name: uninstall homebrew packages
-  homebrew: name={{ item }} state=absent
-  with_items:
-    - "{{ homebrew_uninstall }}"
 
 - name: install php56
   homebrew: name=php56 install_options=homebrew-apxs
@@ -24,11 +16,6 @@
   homebrew_cask: name=java
   sudo: yes
 
-# - name: install homebrew_cask packages
-#   homebrew_cask: name={{ item }}
-#   with_items:
-#     - "{{ homebrew_casks }}"
-
 - name: install gems
   gem: name={{ item }}
   with_items:
@@ -39,9 +26,9 @@
   with_items:
     - "{{ npm_packages }}"
 
-# Postgres
+# POSTGRES
 - name: remove existing postgres cluster
-  file: path="/System/Library/User Template/English.lproj/.postgres" state=absent force=yes
+  file: path="{{ guest_path }}/.postgres" state=absent force=yes
 
 - name: initialize postgres cluster
   shell: pg_ctl init
@@ -57,15 +44,15 @@
 
 - name: stop postgres
   shell: pg_ctl stop
+# POSTGRES
 
-# - name: install php56, httpd24, mysql, phpmyadmin
-#   shell: brew install httpd24 php56 --homebrew-apxs mysql phpmyadmin
-
+# MYSQL
 - name: start mysql server
   shell: mysql.server start
 
-# - name: set mysql root password
-#   shell: mysqladmin -u root password root
+- name: set mysql root password
+  shell: mysqladmin -u root password root
 
 - name: stop mysql server
   shell: mysql.server stop
+# MYSQL
