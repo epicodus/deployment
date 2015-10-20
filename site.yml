@@ -1,5 +1,5 @@
 ---
-- hosts: epicodus_west
+- hosts: epicodus_test
   vars:
     guest_path: /System/Library/User Template/English.lproj
     dot_files:
@@ -25,29 +25,41 @@
       - phpmyadmin
       - gradle
       - javarepl
-    homebrew_uninstall:
-      - chruby
-      - ruby-install
     homebrew_taps:
       - homebrew/dupes
       - homebrew/versions
       - homebrew/php
       - homebrew/apache
       - caskroom/cask
-    homebrew_casks:
-      - android-studio
     gems:
       - bundler
       - simple-git-pair
+    guest_account:
+      - auto_login_guest.mobileconfig
+      - login_window.mobileconfig
     npm_packages:
       - bower
       - ember-cli
+    other_files:
+      - chrome_auto_updates.sh
+      - meraki_agent.pkg
+    plists:
+      - de.appsolute.MAMP.plist # MAMP preferences, suppress MAMP PRO prompt
+      - com.apple.Terminal.plist # Terminal preferences
+    profiles:
+      - meraki_sm_mdm.mobileconfig
+      - dock.mobileconfig
+      - energy_saver.mobileconfig
+      - keyboard_mapping.mobileconfig
+      - suppress_icloud_assistant.mobileconfig
   roles:
-    - role: setup_root
+    - role: setup
+    - role: config_files
     - { role: blockinfile, become: yes }
     - dependencies
     - dot_files
-    - role: setup_guest
+    - app_settings
+    - role: guest_permissions
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: "/System/Library/User Template/English.lproj/.postgres"
