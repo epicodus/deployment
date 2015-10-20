@@ -1,34 +1,35 @@
-[epicodus_new]
+[epicodus_test]
+192.168.1.23
 
 [epicodus_west]
-###### epicodus-1.local
-###### epicodus-2
-###### epicodus-3
-###### blaines-iphone
-###### epicodus-4.local
-###### epicodus-5
-###### epicodus-6
-###### epicodus-6.local
-###### epicodus-8.local
-###### epicodus-9
-###### epicodus-10
-###### epicodus-11.local
-###### epicodus-12
-###### epicodus-13
-###### epicodus-14.local
-###### epicodus-17
-###### epicodus-18
-###### epicodus-19
-###### epicodus-19.local
-###### epicodus-20
-###### epicodus-21
-###### epicodus-22.local
-###### epicodus-24
-###### epicodus-025.local
-###### epicodus-26.local
-###### epicodus-27
-###### epicodus-28.local
-###### epicodus-29
+# epicodus-1.local
+# epicodus-2
+# epicodus-3
+# blaines-iphone
+# epicodus-4.local
+# epicodus-5
+# epicodus-6
+# epicodus-6.local
+# epicodus-8.local
+# epicodus-9
+# epicodus-10
+# epicodus-11.local
+# epicodus-12
+# epicodus-13
+# epicodus-14.local
+# epicodus-17
+# epicodus-18
+# epicodus-19
+# epicodus-19.local
+# epicodus-20
+# epicodus-21
+# epicodus-22.local
+# epicodus-24
+# epicodus-025.local
+# epicodus-26.local
+# epicodus-27
+# epicodus-28.local
+# epicodus-29
 
 [epicodus_east]
 # epicodus-101.local
