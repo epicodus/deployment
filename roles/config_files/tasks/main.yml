@@ -9,10 +9,6 @@
   with_items:
     - "{{ other_files }}"
 
-- name: enable chrome automatic updates
-  command: python /Users/epicodus/chrome_auto_updates.sh
-  sudo: yes
-
 - name: copy plists
   copy: src={{ item }} dest="{{ guest_path }}/Library/Preferences/{{ item }}"
   sudo: yes
