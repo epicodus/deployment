@@ -20,13 +20,13 @@
   file: path=/usr/local recurse=yes owner=epicodus state=directory
   sudo: yes
 
-- name: create /opt directory with epicodus permission
-  file: path=/opt state=directory owner=epicodus recurse=yes
-  sudo: yes
+# - name: create /opt directory with epicodus permission
+#   file: path=/opt state=directory owner=epicodus recurse=yes
+#   sudo: yes
 
-- name: create /opt/gem directory
-  file: path=/opt/gem state=directory
-  sudo: yes
+# - name: create /opt/gem directory
+#   file: path=/opt/gem state=directory
+#   sudo: yes
 
 # GUEST ACCOUNT
 - name: copy Guest account profiles

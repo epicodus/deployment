@@ -3,9 +3,9 @@
   file: path=/Library/Caches/Homebrew owner=Guest recurse=yes
   sudo: yes
 
-- name: set Guest permission for /opt
-  file: path=/opt owner=Guest recurse=yes
-  sudo: yes
+# - name: set Guest permission for /opt
+#   file: path=/opt owner=Guest recurse=yes
+#   sudo: yes
 
 - name: set Guest permission for /usr/local
   file: path=/usr/local owner=Guest recurse=yes
