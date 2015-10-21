@@ -63,4 +63,3 @@
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     COMPOSER_HOME: "{{ guest_path }}/.composer"
     PGDATA: "/System/Library/User Template/English.lproj/.postgres"
-    HOMEBREW_CASK_OPTS: "--appdir=/Applications"
