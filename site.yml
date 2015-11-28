@@ -40,13 +40,10 @@
     npm_packages:
       - bower
       - ember-cli
-    other_files:
-      - meraki_agent.pkg
     plists:
       - de.appsolute.MAMP.plist # MAMP preferences, suppress MAMP PRO prompt
       - com.apple.Terminal.plist # Terminal preferences
     profiles:
-      - meraki_sm_mdm.mobileconfig
       - dock.mobileconfig
       - energy_saver.mobileconfig
       - keyboard_mapping.mobileconfig
