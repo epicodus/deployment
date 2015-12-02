@@ -33,7 +33,7 @@
       - caskroom/cask
     gems:
       - bundler
-      - simple-git-pair
+      - pivotal_git_scripts
     guest_account:
       - auto_login_guest.mobileconfig
       - login_window.mobileconfig
