@@ -1,0 +1,34 @@
+---
+- name: java homebrew taps
+  homebrew_tap: tap={{ item }}
+  with_items:
+    - "{{ java_homebrew_taps }}"
+
+- name: install java dependencies
+  homebrew: name={{ item }}
+  with_items:
+    - "{{ java_homebrew_dependencies }}"
+
+- name: install java
+  homebrew_cask: name=java
+  sudo: yes
+
+# ANDROID STUDIO
+- name: make AndroidStudio1.5 directory
+  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5" state=directory
+
+- name: set permissions for /Users/Shared/Android
+  file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx state=directory
+
+- name: make options directory
+  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options" state=directory
+
+- name: copy ide.general.xml
+  copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options/ide.general.xml"
+
+- name: copy idea.properties
+  copy: src=idea_properties dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/idea.properties"
+
+- name: copy jdk.table.xml
+  copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options/jdk.table.xml"
+# ANDROID STUDIO

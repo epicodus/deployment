@@ -1,10 +1,10 @@
 ---
-- name: set epicodus permission for /System/Library/User Template
-  file: path="/System/Library/User Template" owner=epicodus recurse=yes
+- name: set epicodus permission for /Library/Caches/Homebrew
+  file: path=/Library/Caches/Homebrew owner=epicodus recurse=yes state=directory
   sudo: yes
 
-- name: create /usr/local directory
-  file: path=/usr/local state=directory
+- name: set epicodus permission for /System/Library/User Template
+  file: path="/System/Library/User Template" owner=epicodus recurse=yes
   sudo: yes
 
 - name: check if homebrew is installed
@@ -20,31 +20,44 @@
   file: path=/usr/local recurse=yes owner=epicodus state=directory
   sudo: yes
 
-# - name: create /opt directory with epicodus permission
-#   file: path=/opt state=directory owner=epicodus recurse=yes
-#   sudo: yes
-
-# - name: create /opt/gem directory
-#   file: path=/opt/gem state=directory
-#   sudo: yes
-
 # GUEST ACCOUNT
 - name: copy Guest account profiles
   copy: src={{ item }} dest=/Users/epicodus/{{ item }}
   with_items:
-    - "{{ guest_account }}"
+    - "{{ setup_guest_account }}"
 
 - name: install Guest account profiles
   shell: profiles -I -F /Users/epicodus/{{ item }}
   sudo: yes
   with_items:
-    - "{{ guest_account }}"
+    - "{{ setup_guest_account }}"
 
 - name: remove Guest account profiles
   file: path=/Users/epicodus/{{ item }} state=absent
   with_items:
-    - "{{ guest_account }}"
+    - "{{ setup_guest_account }}"
 
-- name: copy daemon plist that disables Guest user MCX restrictions
-  copy: src=com.davincid.disable-guest-mcx-restrictions.plist dest=/Library/LaunchDaemons/com.davincid.disable-guest-mcx-restrictions.plist
+- name: remove restrictions for Guest account
+  shell: dscl . -mcxdelete /Users/Guest && rm -rf /Library/Managed\ Preferences/Guest
   sudo: yes
+# GUEST ACCOUNT
+
+- name: copy profiles
+  copy: src={{ item }} dest=/Users/epicodus/{{ item }}
+  with_items:
+    - "{{ setup_profiles }}"
+
+- name: copy Terminal preferences plist
+  copy: src=com.apple.Terminal.plist dest="{{ guest_path }}/Library/Preferences/com.apple.Terminal.plist"
+  sudo: yes
+
+- name: install profiles
+  shell: profiles -I -F /Users/epicodus/{{ item }}
+  sudo: yes
+  with_items:
+    - "{{ setup_profiles }}"
+
+- name: remove profiles
+  file: path=/Users/epicodus/{{ item }} state=absent
+  with_items:
+    - "{{ setup_profiles }}"

@@ -5,6 +5,7 @@
 
 - name: copy atom/config.cson
   copy: src=atom dest="{{ guest_path }}/.atom/config.cson"
+# ATOM
 
 # CHROME
 - name: make Google directory
@@ -32,7 +33,6 @@
   copy: src=com.apple.launchservices.secure.plist dest="{{ guest_path }}/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
   sudo: yes
 
-
 - name: copy chrome_auto_updates.sh file
   copy: src=chrome_auto_updates.sh dest=/Users/epicodus/chrome_auto_updates.sh
 
@@ -42,31 +42,4 @@
 
 - name: remove chrome_auto_updates.sh file
   file: path=/Users/epicodus/chrome_auto_updates.sh state=absent
-
-# ANDROID STUDIO
-# - name: make Android directory
-#   file: path=/Users/Shared/Android state=directory
-#   sudo: yes
-#
-# - name: make sdk directory
-#   file: path=/Users/Shared/Android/sdk state=directory
-#   sudo: yes
-#
-# - name: make AndroidStudio1.4 directory
-#   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.4" state=directory
-#   sudo: yes
-#
-# - name: set permissions for /Users/Shared/Android
-#   file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx
-#
-# - name: make options directory
-#   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.4/options" state=directory
-#
-# - name: copy idea.properties
-#   copy: src=idea_properties dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.4/idea.properties"
-#
-# - name: copy ide.general.xml
-#   copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.4/options/ide.general.xml"
-#
-# - name: copy jdk.table.xml
-#   copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.4/options/jdk.table.xml"
+# CHROME

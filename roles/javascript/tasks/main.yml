@@ -1,0 +1,10 @@
+---
+- name: install javascript dependencies
+  homebrew: name={{ item }}
+  with_items:
+    - "{{ javascript_homebrew_dependencies }}"
+
+- name: install npm packages
+  npm: name={{ item }} global=yes
+  with_items:
+    - "{{ javascript_npm_packages }}"

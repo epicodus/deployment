@@ -1,0 +1,35 @@
+---
+- name: copy ruby files
+  copy: src={{ item }} dest="{{ guest_path }}/.{{ item }}"
+  with_items:
+    - "{{ ruby_files }}"
+
+- name: install ruby dependencies
+  homebrew: name={{ item }}
+  with_items:
+    - "{{ ruby_homebrew_dependencies }}"
+
+- name: install ruby gems
+  gem: name={{ item }}
+  with_items:
+    - "{{ ruby_gems }}"
+
+# POSTGRES
+- name: remove existing postgres cluster
+  file: path="{{ guest_path }}/.postgres" state=absent force=yes
+
+- name: initialize postgres cluster
+  shell: pg_ctl init
+
+- name: start postgres
+  shell: pg_ctl start
+
+- name: create Guest database
+  shell: createdb Guest
+
+- name: create Guest superuser
+  shell: createuser -s Guest
+
+- name: stop postgres
+  shell: pg_ctl stop
+# POSTGRES
