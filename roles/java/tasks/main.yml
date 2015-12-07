@@ -16,19 +16,25 @@
 # ANDROID STUDIO
 - name: make AndroidStudio1.5 directory
   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5" state=directory
+  when: "'students' in group_names"
 
 - name: set permissions for /Users/Shared/Android
   file: path="/Users/Shared/Android" owner=epicodus recurse=yes mode=a+rwx state=directory
+  when: "'students' in group_names"
 
 - name: make options directory
   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options" state=directory
+  when: "'students' in group_names"
 
 - name: copy ide.general.xml
   copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options/ide.general.xml"
+  when: "'students' in group_names"
 
 - name: copy idea.properties
   copy: src=idea_properties dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/idea.properties"
+  when: "'students' in group_names"
 
 - name: copy jdk.table.xml
   copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudio1.5/options/jdk.table.xml"
+  when: "'students' in group_names"
 # ANDROID STUDIO

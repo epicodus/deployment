@@ -1,8 +1,15 @@
 ---
-- name: copy ruby files
+- name: copy ruby files for Guest
   copy: src={{ item }} dest="{{ guest_path }}/.{{ item }}"
   with_items:
     - "{{ ruby_files }}"
+  when: "'students' in group_names"
+
+- name: copy ruby files for staff
+  copy: src={{ item }} dest="{{ staff_path }}/.{{ item }}"
+  with_items:
+    - "{{ ruby_files }}"
+  when: "'staff' in group_names"
 
 - name: install ruby dependencies
   homebrew: name={{ item }}
@@ -16,7 +23,7 @@
 
 # POSTGRES
 - name: remove existing postgres cluster
-  file: path="{{ guest_path }}/.postgres" state=absent force=yes
+  file: path=/usr/local/var/postgres state=absent force=yes
 
 - name: initialize postgres cluster
   shell: pg_ctl init
@@ -26,9 +33,15 @@
 
 - name: create Guest database
   shell: createdb Guest
+  when: "'students' in group_names"
+
+- name: create staff database
+  shell: createdb {{ remote_username.stdout }}
+  when: "'staff' in group_names"
 
 - name: create Guest superuser
   shell: createuser -s Guest
+  when: "'students' in group_names"
 
 - name: stop postgres
   shell: pg_ctl stop

@@ -13,13 +13,31 @@
   with_items:
     - "{{ php_homebrew_dependencies }}"
 
-- name: check if drush is installed
+- name: check if drush is installed for Guest
   stat: path="{{ guest_path }}/.composer/vendor/drush"
-  register: drush_installed
+  register: drush_installed_guest
+  when: "'students' in group_names"
+  environment:
+    COMPOSER_HOME: "{{ guest_path }}/.composer"
 
-- name: install drush through composer
+- name: check if drush is installed for staff
+  stat: path="{{ staff_path }}/.composer/vendor/drush"
+  register: drush_installed_staff
+  when: "'staff' in group_names"
+  environment:
+    COMPOSER_HOME: "{{ staff_path }}/.composer"
+
+- name: install drush through composer for Guest
   shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
-  when: drush_installed.stat.exists == false
+  when: "'students' in group_names and drush_installed_guest.stat.exists == false"
+  environment:
+    COMPOSER_HOME: "{{ guest_path }}/.composer"
+
+- name: install drush through composer for staff
+  shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
+  when: "'staff' in group_names and drush_installed_staff.stat.exists == false"
+  environment:
+    COMPOSER_HOME: "{{ staff_path }}/.composer"
 
 # MYSQL
 - name: start mysql server

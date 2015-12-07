@@ -4,13 +4,24 @@
   with_items:
     - "{{ other_homebrew_dependencies }}"
 
-- name: copy dot files
+- name: copy bash_profile for Guest
+  copy: src=bash_profile dest="{{ guest_path }}/.bash_profile"
+  when: "'students' in group_names"
+
+- name: copy bash_profile for epicodus staff
+  copy: src=bash_profile dest="{{ staff_path }}/.bash_profile"
+  when: "'staff' in group_names"
+
+- name: copy dot files for Guest
   copy: src={{ item }} dest="{{ guest_path }}/.{{ item }}"
   with_items:
     - "{{ other_files }}"
+  when: "'students' in group_names"
 
 - name: copy pre-commit
   copy: src=pre-commit dest=/usr/local/share/git-core/templates/hooks/pre-commit
+  when: "'students' in group_names"
 
 - name: change permissions for pre-commit
   file: path=/usr/local/share/git-core/templates/hooks/pre-commit mode=0755
+  when: "'students' in group_names"

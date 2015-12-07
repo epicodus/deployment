@@ -1,9 +1,8 @@
 ---
-- hosts: epicodus_test
+- hosts: students
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
-    COMPOSER_HOME: "{{ guest_path }}/.composer"
-    PGDATA: "/System/Library/User Template/English.lproj/.postgres"
+    PGDATA: /usr/local/var/postgres
   roles:
     - { role: yaegashi.blockinfile, become: yes }
     - setup
@@ -15,6 +14,7 @@
     - app_settings
     - guest_permissions
   vars:
+    staff_path: /Users/epicodus
     guest_path: /System/Library/User Template/English.lproj
     java_homebrew_taps:
       - caskroom/cask
@@ -29,7 +29,6 @@
       - bower
       - ember-cli
     other_files:
-      - bash_profile
       - gitconfig
       - gitignore_global
     other_homebrew_dependencies:
@@ -60,7 +59,7 @@
       - auto_login_guest.mobileconfig
       - login_window.mobileconfig
     setup_profiles:
-      - dock.mobileconfig
+      - student_dock.mobileconfig
       - energy_saver.mobileconfig
       - keyboard_mapping.mobileconfig
       - suppress_icloud_assistant.mobileconfig
