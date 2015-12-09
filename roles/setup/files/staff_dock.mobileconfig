@@ -19,11 +19,11 @@
 								<key>contents-immutable</key>
 								<false/>
 								<key>last-messagetrace-stamp</key>
-								<real>470683838.84772098</real>
+								<real>471288638.84885597</real>
 								<key>minimize-to-application</key>
 								<false/>
 								<key>mod-count</key>
-								<integer>290</integer>
+								<integer>296</integer>
 								<key>persistent-apps</key>
 								<array>
 									<dict>
@@ -168,11 +168,11 @@
 											<key>file-label</key>
 											<string>Google Chrome</string>
 											<key>file-mod-date</key>
-											<integer>3531188037</integer>
+											<integer>3532103651</integer>
 											<key>file-type</key>
 											<integer>41</integer>
 											<key>parent-mod-date</key>
-											<integer>3532010190</integer>
+											<integer>3532527361</integer>
 										</dict>
 										<key>tile-type</key>
 										<string>file-tile</string>
@@ -341,17 +341,17 @@
 								<key>version</key>
 								<integer>1</integer>
 								<key>wvous-bl-corner</key>
-								<integer>11</integer>
+								<integer>1</integer>
 								<key>wvous-bl-modifier</key>
-								<integer>0</integer>
+								<integer>1048576</integer>
 								<key>wvous-tl-corner</key>
-								<integer>2</integer>
+								<integer>1</integer>
 								<key>wvous-tl-modifier</key>
-								<integer>0</integer>
+								<integer>1048576</integer>
 								<key>wvous-tr-corner</key>
-								<integer>4</integer>
+								<integer>1</integer>
 								<key>wvous-tr-modifier</key>
-								<integer>0</integer>
+								<integer>1048576</integer>
 							</dict>
 						</dict>
 					</array>
@@ -360,11 +360,11 @@
 			<key>PayloadEnabled</key>
 			<true/>
 			<key>PayloadIdentifier</key>
-			<string>MCXToProfile.02af7cb1-a061-4d46-817a-0ff1b6d3c1fe.alacarte.customsettings.78fff103-d04a-498a-bb95-5e9cf08e2448</string>
+			<string>MCXToProfile.bcfeea93-e43c-41e8-ad16-50920f51628f.alacarte.customsettings.e277c513-8595-465f-be6d-f89537d5c92b</string>
 			<key>PayloadType</key>
 			<string>com.apple.ManagedClient.preferences</string>
 			<key>PayloadUUID</key>
-			<string>78fff103-d04a-498a-bb95-5e9cf08e2448</string>
+			<string>e277c513-8595-465f-be6d-f89537d5c92b</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 		</dict>
@@ -377,7 +377,7 @@ Git revision: a14a19d7f0</string>
 	<key>PayloadDisplayName</key>
 	<string>MCXToProfile: com.apple.dock</string>
 	<key>PayloadIdentifier</key>
-	<string>com.epicodus.dock</string>
+	<string>staff_dock</string>
 	<key>PayloadOrganization</key>
 	<string></string>
 	<key>PayloadRemovalDisallowed</key>
@@ -387,7 +387,7 @@ Git revision: a14a19d7f0</string>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>02af7cb1-a061-4d46-817a-0ff1b6d3c1fe</string>
+	<string>bcfeea93-e43c-41e8-ad16-50920f51628f</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
