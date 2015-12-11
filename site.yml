@@ -6,15 +6,15 @@
   roles:
     - { role: yaegashi.blockinfile, become: yes }
     - setup
-    - other
-    - ruby
-    - javascript
-    - php
-    - java
     - app_settings
-    - guest_permissions
+    - java
+    - javascript
+    - other
+    - php
+    - ruby
+    - permissions
   vars:
-    staff_path: /Users/epicodus
+    staff_path: /Users/chris
     guest_path: /System/Library/User Template/English.lproj
     java_homebrew_taps:
       - caskroom/cask
@@ -59,7 +59,6 @@
       - auto_login_guest.mobileconfig
       - login_window.mobileconfig
     setup_profiles:
-      - student_dock.mobileconfig
       - energy_saver.mobileconfig
       - keyboard_mapping.mobileconfig
       - suppress_icloud_assistant.mobileconfig

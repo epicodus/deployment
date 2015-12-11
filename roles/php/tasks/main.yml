@@ -1,8 +1,4 @@
 ---
-- name: copy MAMP preferences plist
-  copy: src=de.appsolute.MAMP.plist dest="{{ guest_path }}/Library/Preferences/de.appsolute.MAMP.plist"
-  sudo: yes
-
 - name: php homebrew taps
   homebrew_tap: tap={{ item }}
   with_items:
@@ -13,33 +9,6 @@
   with_items:
     - "{{ php_homebrew_dependencies }}"
 
-- name: check if drush is installed for Guest
-  stat: path="{{ guest_path }}/.composer/vendor/drush"
-  register: drush_installed_guest
-  when: "'students' in group_names"
-  environment:
-    COMPOSER_HOME: "{{ guest_path }}/.composer"
-
-- name: check if drush is installed for staff
-  stat: path="{{ staff_path }}/.composer/vendor/drush"
-  register: drush_installed_staff
-  when: "'staff' in group_names"
-  environment:
-    COMPOSER_HOME: "{{ staff_path }}/.composer"
-
-- name: install drush through composer for Guest
-  shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
-  when: "'students' in group_names and drush_installed_guest.stat.exists == false"
-  environment:
-    COMPOSER_HOME: "{{ guest_path }}/.composer"
-
-- name: install drush through composer for staff
-  shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
-  when: "'staff' in group_names and drush_installed_staff.stat.exists == false"
-  environment:
-    COMPOSER_HOME: "{{ staff_path }}/.composer"
-
-# MYSQL
 - name: start mysql server
   shell: mysql.server start
 
@@ -48,7 +17,6 @@
 
 - name: stop mysql server
   shell: mysql.server stop
-# MYSQL
 
 - name: copy config_inc_php
   copy: src=config_inc_php dest="/usr/local/share/phpmyadmin/config.inc.php"
@@ -78,3 +46,43 @@
         </IfModule>
       </Directory>
       ServerName localhost
+
+# STUDENTS
+- name: copy MAMP preferences plist for Guest
+  copy: src=de.appsolute.MAMP.plist dest="{{ guest_path }}/Library/Preferences/de.appsolute.MAMP.plist"
+  sudo: yes
+  when: "'students' in group_names"
+
+- name: copy MAMP preferences plist for staff
+  copy: src=de.appsolute.MAMP.plist dest="{{ staff_path }}/Library/Preferences/de.appsolute.MAMP.plist"
+  sudo: yes
+  when: "'staff' in group_names"
+
+- name: check if drush is installed for Guest
+  stat: path="{{ guest_path }}/.composer/vendor/drush"
+  register: drush_installed_guest
+  when: "'students' in group_names"
+  environment:
+    COMPOSER_HOME: "{{ guest_path }}/.composer"
+
+- name: install drush for Guest
+  shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
+  when: "'students' in group_names and drush_installed_guest.stat.exists == false"
+  environment:
+    COMPOSER_HOME: "{{ guest_path }}/.composer"
+# STUDENTS
+
+# STAFF
+- name: check if drush is installed for staff
+  stat: path="{{ staff_path }}/.composer/vendor/drush"
+  register: drush_installed_staff
+  when: "'staff' in group_names"
+  environment:
+    COMPOSER_HOME: "{{ staff_path }}/.composer"
+
+- name: install drush for staff
+  shell: /usr/local/bin/composer global require drush/drush:7.* -n --prefer-source
+  when: "'staff' in group_names and drush_installed_staff.stat.exists == false"
+  environment:
+    COMPOSER_HOME: "{{ staff_path }}/.composer"
+# STAFF

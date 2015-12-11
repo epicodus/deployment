@@ -1,5 +1,5 @@
 ---
-# ATOM
+# STUDENTS
 - name: make atom directory
   file: path="{{ guest_path }}/.atom" state=directory
   when: "'students' in group_names"
@@ -7,9 +7,7 @@
 - name: copy atom/config.cson
   copy: src=atom dest="{{ guest_path }}/.atom/config.cson"
   when: "'students' in group_names"
-# ATOM
 
-# CHROME
 - name: make Google directory
   file: path="{{ guest_path }}/Library/Application Support/Google" state=directory
   when: "'students' in group_names"
@@ -55,4 +53,60 @@
 - name: remove chrome_auto_updates.sh file
   file: path=/Users/epicodus/chrome_auto_updates.sh state=absent
   when: "'students' in group_names"
-# CHROME
+# STUDENTS
+
+# STAFF
+- name: make atom directory
+  file: path="{{ staff_path }}/.atom" state=directory
+  when: "'staff' in group_names"
+
+- name: copy atom/config.cson
+  copy: src=atom dest="{{ staff_path }}/.atom/config.cson"
+  when: "'staff' in group_names"
+
+- name: make Google directory
+  file: path="{{ staff_path }}/Library/Application Support/Google" state=directory
+  when: "'staff' in group_names"
+
+- name: make Chrome directory
+  file: path="{{ staff_path }}/Library/Application Support/Google/Chrome" state=directory
+  when: "'staff' in group_names"
+
+- name: make Default directory
+  file: path="{{ staff_path }}/Library/Application Support/Google/Chrome/Default" state=directory
+  when: "'staff' in group_names"
+
+- name: copy Preferences
+  copy: src=chrome_preferences dest="{{ staff_path }}/Library/Application Support/Google/Chrome/Default/Preferences"
+  when: "'staff' in group_names"
+
+- name: make Consent To Send Stats file
+  file: state=touch path="{{ staff_path }}/Library/Application Support/Google/Chrome/Consent To Send Stats"
+  when: "'staff' in group_names"
+
+- name: make First Run file
+  file: state=touch path="{{ staff_path }}/Library/Application Support/Google/Chrome/First Run"
+  when: "'staff' in group_names"
+
+- name: make com.apple.LaunchServices directory
+  file: path="{{ staff_path }}/Library/Preferences/com.apple.LaunchServices" state=directory
+  when: "'staff' in group_names"
+
+- name: copy com.apple.launchservices.secure.plist
+  copy: src=com.apple.launchservices.secure.plist dest="{{ staff_path }}/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
+  sudo: yes
+  when: "'staff' in group_names"
+
+- name: copy chrome_auto_updates.sh file
+  copy: src=chrome_auto_updates.sh dest=/Users/epicodus/chrome_auto_updates.sh
+  when: "'staff' in group_names"
+
+- name: enable chrome automatic updates
+  command: python /Users/epicodus/chrome_auto_updates.sh
+  sudo: yes
+  when: "'staff' in group_names"
+
+- name: remove chrome_auto_updates.sh file
+  file: path=/Users/epicodus/chrome_auto_updates.sh state=absent
+  when: "'staff' in group_names"
+# STAFF
