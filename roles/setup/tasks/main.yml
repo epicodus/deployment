@@ -86,6 +86,11 @@
   copy: src=staff_dock.mobileconfig dest=/Users/epicodus/staff_dock.mobileconfig
   when: "'staff' in group_names"
 
+- name: update Downloads folder path for staff
+  replace: dest=/Users/epicodus/staff_dock.mobileconfig regexp='epicodus' replace='placeholder'
+  sudo: yes
+  when: "'staff' in group_names"
+
 - name: install dock profile for staff
   shell: profiles -I -F /Users/epicodus/staff_dock.mobileconfig
   sudo: yes
@@ -112,11 +117,6 @@
 
 - name: enable fast user switching
   shell: defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool YES
-  sudo: yes
-  when: "'staff' in group_names"
-
-- name: update Downloads folder path for staff
-  replace: dest=/Users/epicodus/staff_dock.mobileconfig regexp='epicodus' replace='chris'
   sudo: yes
   when: "'staff' in group_names"
 # STAFF

@@ -1,5 +1,5 @@
 ---
-- hosts: students
+- hosts: staff
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: /usr/local/var/postgres
@@ -14,7 +14,7 @@
     - ruby
     - permissions
   vars:
-    staff_path: /Users/chris
+    staff_path: /Users/placeholder
     guest_path: /System/Library/User Template/English.lproj
     java_homebrew_taps:
       - caskroom/cask

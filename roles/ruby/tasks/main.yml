@@ -36,11 +36,11 @@
 
 # STAFF
 - name: create staff database
-  shell: createdb chris
+  shell: createdb placeholder
   when: "'staff' in group_names"
 
-- name: create chris superuser
-  shell: createuser -s chris
+- name: create staff superuser
+  shell: createuser -s placeholder
   when: "'staff' in group_names"
 
 - name: copy ruby files for staff
