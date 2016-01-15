@@ -1,5 +1,5 @@
 ---
-- hosts: staff
+- hosts: students
   environment:
     PATH: /usr/local/bin:{{ ansible_env.PATH }}
     PGDATA: /usr/local/var/postgres
