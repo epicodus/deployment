@@ -11,7 +11,7 @@
 
 - name: install java
   homebrew_cask: name=java
-  sudo: yes
+  become: yes
 
 # STUDENTS
 - name: make AndroidStudio1.5 directory

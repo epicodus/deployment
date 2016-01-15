@@ -5,16 +5,16 @@
 
 - name: install homebrew
   shell: curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
-  sudo: yes
+  become: yes
   when: homebrew_installed.stat.exists == false
 
 - name: set epicodus permission for /usr/local
   file: path=/usr/local recurse=yes owner=epicodus state=directory
-  sudo: yes
+  become: yes
 
 - name: set epicodus permission for /Library/Caches/Homebrew
   file: path=/Library/Caches/Homebrew owner=epicodus recurse=yes state=directory
-  sudo: yes
+  become: yes
 
 - name: copy profiles
   copy: src={{ item }} dest=/Users/epicodus/{{ item }}
@@ -23,7 +23,7 @@
 
 - name: install profiles
   shell: profiles -I -F /Users/epicodus/{{ item }}
-  sudo: yes
+  become: yes
   with_items:
     - "{{ setup_profiles }}"
 
@@ -35,7 +35,7 @@
 # STUDENTS
 - name: set epicodus permission for /System/Library/User Template
   file: path="/System/Library/User Template" owner=epicodus recurse=yes
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: copy Guest profiles
@@ -46,7 +46,7 @@
 
 - name: install Guest profiles
   shell: profiles -I -F /Users/epicodus/{{ item }}
-  sudo: yes
+  become: yes
   with_items:
     - "{{ setup_guest_account }}"
   when: "'students' in group_names"
@@ -63,7 +63,7 @@
 
 - name: install dock profile for Guest
   shell: profiles -I -F /Users/epicodus/student_dock.mobileconfig
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: remove dock profile for Guest
@@ -72,14 +72,14 @@
 
 - name: copy Terminal preferences plist for Guest
   copy: src=com.apple.Terminal.plist dest="{{ guest_path }}/Library/Preferences/com.apple.Terminal.plist"
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 # STUDENTS
 
 # STAFF
 - name: set epicodus permission for staff home directory
   file: path="{{ staff_path }}" owner=epicodus recurse=yes
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy dock profile for staff
@@ -88,12 +88,12 @@
 
 - name: update Downloads folder path for staff
   replace: dest=/Users/epicodus/staff_dock.mobileconfig regexp='epicodus' replace='placeholder'
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: install dock profile for staff
   shell: profiles -I -F /Users/epicodus/staff_dock.mobileconfig
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: remove dock profile for staff
@@ -102,21 +102,21 @@
 
 - name: copy Terminal preferences plist for staff
   copy: src=com.apple.Terminal.plist dest="{{ staff_path }}/Library/Preferences/com.apple.Terminal.plist"
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: hide epicodus account
   shell: defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add epicodus
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: show other users section on login page
   shell: defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool TRUE
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: enable fast user switching
   shell: defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool YES
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 # STAFF

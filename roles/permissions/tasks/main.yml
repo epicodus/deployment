@@ -2,43 +2,43 @@
 # STUDENTS
 - name: set Guest permission for /Library/Caches/Homebrew
   file: path=/Library/Caches/Homebrew owner=Guest recurse=yes state=directory
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: set Guest permission for /usr/local
   file: path=/usr/local owner=Guest recurse=yes
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: set Guest permission for /opt/homebrew-cask
   file: path=/opt/homebrew-cask owner=Guest recurse=yes state=directory
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: remove restrictions for Guest
   shell: /usr/bin/dscl . -mcxdelete /Users/Guest && rm -rf "/Library/Managed Preferences/Guest"
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 # STUDENTS
 
 # STAFF
 - name: set staff permission for /Library/Caches/Homebrew
   file: path=/Library/Caches/Homebrew owner=placeholder recurse=yes state=directory
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for /usr/local
   file: path=/usr/local owner=placeholder recurse=yes
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for /opt/homebrew-cask
   file: path=/opt/homebrew-cask owner=placeholder recurse=yes state=directory
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for staff home directory
   file: path="{{ staff_path }}" owner=placeholder recurse=yes
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
   # STAFF

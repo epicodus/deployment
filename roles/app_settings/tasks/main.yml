@@ -38,7 +38,7 @@
 
 - name: copy com.apple.launchservices.secure.plist
   copy: src=com.apple.launchservices.secure.plist dest="{{ guest_path }}/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: copy chrome_auto_updates.sh file
@@ -47,7 +47,7 @@
 
 - name: enable chrome automatic updates
   command: python /Users/epicodus/chrome_auto_updates.sh
-  sudo: yes
+  become: yes
   when: "'students' in group_names"
 
 - name: remove chrome_auto_updates.sh file
@@ -94,7 +94,7 @@
 
 - name: copy com.apple.launchservices.secure.plist
   copy: src=com.apple.launchservices.secure.plist dest="{{ staff_path }}/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy chrome_auto_updates.sh file
@@ -103,7 +103,7 @@
 
 - name: enable chrome automatic updates
   command: python /Users/epicodus/chrome_auto_updates.sh
-  sudo: yes
+  become: yes
   when: "'staff' in group_names"
 
 - name: remove chrome_auto_updates.sh file
