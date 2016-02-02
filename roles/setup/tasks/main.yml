@@ -66,6 +66,19 @@
   become: yes
   when: "'students' in group_names"
 
+# - name: copy Windows dock profile for Guest
+#   copy: src=student_windows_dock.mobileconfig dest=/Users/epicodus/student_windows_dock.mobileconfig
+#   when: "'students' in group_names"
+#
+# - name: install Windows dock profile for Guest
+#   shell: profiles -I -F /Users/epicodus/student_windows_dock.mobileconfig
+#   become: yes
+#   when: "'students' in group_names"
+#
+# - name: remove Windows dock profile for Guest
+#   file: path=/Users/epicodus/student_windows_dock.mobileconfig state=absent
+#   when: "'students' in group_names"
+
 - name: remove dock profile for Guest
   file: path=/Users/epicodus/student_dock.mobileconfig state=absent
   when: "'students' in group_names"
