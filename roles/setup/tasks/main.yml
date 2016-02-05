@@ -99,11 +99,6 @@
   copy: src=staff_dock.mobileconfig dest=/Users/epicodus/staff_dock.mobileconfig
   when: "'staff' in group_names"
 
-- name: update Downloads folder path for staff
-  replace: dest=/Users/epicodus/staff_dock.mobileconfig regexp='epicodus' replace='placeholder'
-  become: yes
-  when: "'staff' in group_names"
-
 - name: install dock profile for staff
   shell: profiles -I -F /Users/epicodus/staff_dock.mobileconfig
   become: yes
