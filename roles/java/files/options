@@ -1,0 +1,5 @@
+<application>
+  <component name="PropertiesComponent">
+    <property name="ignore.unsupported.jvm.dragndrop.message" value="true" />
+  </component>
+</application>
