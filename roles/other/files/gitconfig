@@ -1,6 +1,4 @@
 [color]
 	ui = true
-[user]
-	email = student@epicodus.com
 [core]
 	excludesfile = /Users/Guest/.gitignore_global
