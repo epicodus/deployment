@@ -1,8 +1,19 @@
 {
-   "profile": {
-      "default_zoom_level": 2.223901085741545
-   },
-   "sync_promo": {
-      "user_skipped": true
+  "profile": {
+    "default_zoom_level": 2.223901085741545
+  },
+  "sync_promo": {
+    "user_skipped": true
+  },
+  "session": {
+    "restore_on_startup": 4,
+    "startup_urls": [
+      "https://epicenter.epicodus.com"
+    ]
+  },
+  "distribution": {
+    "make_chrome_default": true,
+    "make_chrome_default_for_user": true,
+    "suppress_first_run_default_browser_prompt": true
   }
 }
