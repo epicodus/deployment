@@ -125,6 +125,21 @@
   file: path=/Users/epicodus/staff_dock.mobileconfig state=absent
   when: "'staff' in group_names"
 
+# VIDEO MACHINE DOCK
+# - name: copy video machine dock profile for staff
+#   copy: src=staff_video_dock.mobileconfig dest=/Users/epicodus/staff_video_dock.mobileconfig
+#   when: "'staff' in group_names"
+#
+# - name: install video machine dock profile for staff
+#   shell: profiles -I -F /Users/epicodus/staff_video_dock.mobileconfig
+#   become: yes
+#   when: "'staff' in group_names"
+#
+# - name: remove video machine dock profile for staff
+#   file: path=/Users/epicodus/staff_video_dock.mobileconfig state=absent
+#   when: "'staff' in group_names"
+# VIDEO MACHINE DOCK
+
 - name: copy Terminal preferences plist for staff
   copy: src=com.apple.Terminal.plist dest="{{ staff_path }}/Library/Preferences/com.apple.Terminal.plist"
   become: yes
