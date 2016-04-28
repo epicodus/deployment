@@ -14,20 +14,12 @@
   become: yes
 
 # STUDENTS
-- name: remove AndroidStudio1.5 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5" state=absent
+- name: remove AndroidStudio* directories
+  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio*" state=absent
   when: "'students' in group_names"
 
-- name: remove AndroidStudioPreview2.0 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.0" state=absent
-  when: "'students' in group_names"
-
-- name: remove AndroidStudioPreview2.1 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1" state=absent
-  when: "'students' in group_names"
-
-- name: make AndroidStudioPreview2.1 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1" state=directory
+- name: make AndroidStudio2.1 directory
+  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio2.1" state=directory
   when: "'students' in group_names"
 
 - name: set permissions for /Users/Shared/Android
@@ -36,49 +28,42 @@
   when: "'students' in group_names"
 
 - name: make options directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options" state=directory
+  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options" state=directory
   when: "'students' in group_names"
 
 - name: copy ide.general.xml
-  copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/ide.general.xml"
+  copy: src=ide_general dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/ide.general.xml"
   when: "'students' in group_names"
 
 - name: copy jdk.table.xml
-  copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/jdk.table.xml"
+  copy: src=jdk_table dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/jdk.table.xml"
   when: "'students' in group_names"
 
 - name: copy project.default.xml
-  copy: src=project_default dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/project.default.xml"
+  copy: src=project_default dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/project.default.xml"
   when: "'students' in group_names"
 
 - name: copy updates.xml
-  copy: src=updates dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/updates.xml"
+  copy: src=updates dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/updates.xml"
   when: "'students' in group_names"
 
 - name: copy options.xml
-  copy: src=options dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/options.xml"
+  copy: src=options dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/options.xml"
   when: "'students' in group_names"
 
 - name: copy androidStudioFirstRun.xml
-  copy: src=first_run dest="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1/options/androidStudioFirstRun.xml"
+  copy: src=first_run dest="{{ guest_path }}/Library/Preferences/AndroidStudio2.1/options/androidStudioFirstRun.xml"
   when: "'students' in group_names"
 # STUDENTS
 
 # STAFF
-- name: remove AndroidStudio1.5 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio1.5" state=absent
+- name: remove AndroidStudio* directories
+  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio*" state=absent
   when: "'staff' in group_names"
 
-- name: remove AndroidStudioPreview2.0 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.0" state=absent
-  when: "'staff' in group_names"
-
-- name: remove AndroidStudioPreview2.1 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1" state=absent
-  when: "'staff' in group_names"
-
-- name: make AndroidStudioPreview2.1 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1" state=directory
+- name: make AndroidStudio2.1 directory
+  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1" state=directory
+  become: yes
   when: "'staff' in group_names"
 
 - name: set permissions for /Users/Shared/Android
@@ -87,30 +72,37 @@
   when: "'staff' in group_names"
 
 - name: make options directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options" state=directory
+  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options" state=directory
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy ide.general.xml
-  copy: src=ide_general dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/ide.general.xml"
+  copy: src=ide_general dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/ide.general.xml"
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy jdk.table.xml
-  copy: src=jdk_table dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/jdk.table.xml"
+  copy: src=jdk_table dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/jdk.table.xml"
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy project.default.xml
-  copy: src=project_default dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/project.default.xml"
+  copy: src=project_default dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/project.default.xml"
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy updates.xml
-  copy: src=updates dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/updates.xml"
+  copy: src=updates dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/updates.xml"
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy options.xml
-  copy: src=options dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/options.xml"
+  copy: src=options dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/options.xml"
+  become: yes
   when: "'staff' in group_names"
 
 - name: copy androidStudioFirstRun.xml
-  copy: src=first_run dest="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1/options/androidStudioFirstRun.xml"
+  copy: src=first_run dest="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options/androidStudioFirstRun.xml"
+  become: yes
   when: "'staff' in group_names"
 # STAFF
