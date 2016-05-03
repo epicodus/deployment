@@ -53,11 +53,6 @@
   become: yes
   when: "'students' in group_names"
 
-- name: copy MAMP preferences plist for staff
-  copy: src=de.appsolute.MAMP.plist dest="{{ staff_path }}/Library/Preferences/de.appsolute.MAMP.plist"
-  become: yes
-  when: "'staff' in group_names"
-
 - name: check if drush is installed for Guest
   stat: path="{{ guest_path }}/.composer/vendor/drush"
   register: drush_installed_guest
@@ -73,6 +68,11 @@
 # STUDENTS
 
 # STAFF
+- name: copy MAMP preferences plist for staff
+  copy: src=de.appsolute.MAMP.plist dest="{{ staff_path }}/Library/Preferences/de.appsolute.MAMP.plist"
+  become: yes
+  when: "'staff' in group_names"
+
 - name: check if drush is installed for staff
   stat: path="{{ staff_path }}/.composer/vendor/drush"
   register: drush_installed_staff
