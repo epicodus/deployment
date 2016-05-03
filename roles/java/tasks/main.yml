@@ -71,6 +71,11 @@
   become: yes
   when: "'staff' in group_names"
 
+- name: set permissions for AndroidStudio2.1 directory
+  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1" owner=staff recurse=yes mode=a+rwx state=directory
+  become: yes
+  when: "'staff' in group_names"
+
 - name: make options directory
   file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1/options" state=directory
   become: yes
