@@ -81,21 +81,6 @@
 #   when: "'students' in group_names"
 # WINDOWS DOCK
 
-# SKETCH DOCK
-# - name: copy Sketch dock profile for Guest
-#   copy: src=student_sketch_dock.mobileconfig dest=/Users/epicodus/student_sketch_dock.mobileconfig
-#   when: "'students' in group_names"
-#
-# - name: install Sketch dock profile for Guest
-#   shell: profiles -I -F /Users/epicodus/student_sketch_dock.mobileconfig
-#   become: yes
-#   when: "'students' in group_names"
-#
-# - name: remove Sketch dock profile for Guest
-#   file: path=/Users/epicodus/student_sketch_dock.mobileconfig state=absent
-#   when: "'students' in group_names"
-# SKETCH DOCK
-
 - name: remove dock profile for Guest
   file: path=/Users/epicodus/student_dock.mobileconfig state=absent
   when: "'students' in group_names"
