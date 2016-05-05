@@ -14,7 +14,7 @@
     - ruby
     - permissions
   vars:
-    staff_path: /Users/placeholder
+    staff_path: /Users/epicodus_staff
     guest_path: /System/Library/User Template/English.lproj
     java_homebrew_taps:
       - caskroom/cask

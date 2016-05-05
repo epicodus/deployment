@@ -23,22 +23,22 @@
 
 # STAFF
 - name: set staff permission for /Library/Caches/Homebrew
-  file: path=/Library/Caches/Homebrew owner=placeholder recurse=yes state=directory
+  file: path=/Library/Caches/Homebrew owner=epicodus_staff recurse=yes state=directory
   become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for /usr/local
-  file: path=/usr/local owner=placeholder recurse=yes
+  file: path=/usr/local owner=epicodus_staff recurse=yes
   become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for /opt/homebrew-cask
-  file: path=/opt/homebrew-cask owner=placeholder recurse=yes state=directory
+  file: path=/opt/homebrew-cask owner=epicodus_staff recurse=yes state=directory
   become: yes
   when: "'staff' in group_names"
 
 - name: set staff permission for staff home directory
-  file: path="{{ staff_path }}" owner=placeholder recurse=yes
+  file: path="{{ staff_path }}" owner=epicodus_staff recurse=yes
   become: yes
   when: "'staff' in group_names"
   # STAFF

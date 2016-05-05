@@ -36,11 +36,11 @@
 
 # STAFF
 - name: create staff database
-  shell: createdb placeholder
+  shell: createdb epicodus_staff
   when: "'staff' in group_names"
 
 - name: create staff superuser
-  shell: createuser -s placeholder
+  shell: createuser -s epicodus_staff
   when: "'staff' in group_names"
 
 - name: copy ruby files for staff

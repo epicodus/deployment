@@ -91,12 +91,12 @@
   when: "'staff' in group_names"
 
 - name: set permissions for /Users/Shared/Android
-  file: path="/Users/Shared/Android" owner=staff recurse=yes mode=a+rwx state=directory
+  file: path="/Users/Shared/Android" owner=epicodus_staff recurse=yes mode=a+rwx state=directory
   become: yes
   when: "'staff' in group_names"
 
 - name: set permissions for AndroidStudio2.1 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1" owner=staff recurse=yes mode=a+rwx state=directory
+  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1" owner=epicodus_staff recurse=yes mode=a+rwx state=directory
   become: yes
   when: "'staff' in group_names"
 
