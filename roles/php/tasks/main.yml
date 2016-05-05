@@ -65,6 +65,11 @@
   when: "'students' in group_names and drush_installed_guest.stat.exists == false"
   environment:
     COMPOSER_HOME: "{{ guest_path }}/.composer"
+
+- name: set Guest permission for /Applications/MAMP
+  file: path=/Applications/MAMP owner=Guest recurse=yes
+  become: yes
+  when: "'students' in group_names"
 # STUDENTS
 
 # STAFF
@@ -85,4 +90,9 @@
   when: "'staff' in group_names and drush_installed_staff.stat.exists == false"
   environment:
     COMPOSER_HOME: "{{ staff_path }}/.composer"
+
+- name: set staff permission for /Applications/MAMP
+  file: path=/Applications/MAMP owner=epicodus_staff recurse=yes
+  become: yes
+  when: "'staff' in group_names"
 # STAFF
