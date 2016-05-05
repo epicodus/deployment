@@ -8,6 +8,11 @@
   copy: src=atom dest="{{ guest_path }}/.atom/config.cson"
   when: "'students' in group_names"
 
+- name: set Guest ownership for /Applications/Atom.app
+  file: path=/Applications/Atom.app owner=Guest recurse=yes
+  become: yes
+  when: "'students' in group_names"
+
 - name: make Google directory
   file: path="{{ guest_path }}/Library/Application Support/Google" state=directory
   when: "'students' in group_names"
