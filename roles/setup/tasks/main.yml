@@ -130,6 +130,16 @@
   become: yes
   when: "'staff' in group_names"
 
+- name: copy password security preferences plist for staff
+  copy: src=com.apple.screensaver.plist dest="{{ staff_path }}/Library/Preferences/com.apple.screensaver.plist"
+  become: yes
+  when: "'staff' in group_names"
+
+- name: copy menu bar icons preferences plist for staff
+  copy: src=com.apple.systemuiserver.plist dest="{{ staff_path }}/Library/Preferences/com.apple.systemuiserver.plist"
+  become: yes
+  when: "'staff' in group_names"
+
 - name: hide epicodus account
   shell: defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add epicodus
   become: yes
