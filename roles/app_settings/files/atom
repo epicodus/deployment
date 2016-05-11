@@ -1,5 +1,7 @@
-'global':
-  'welcome':
-    'showOnStartup': false
-  'editor':
-    'fontSize': 18
+global:
+  welcome:
+    showOnStartup: false
+  editor:
+    fontSize: 18
+  core:
+    automaticallyUpdate: false
