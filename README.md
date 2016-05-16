@@ -1,7 +1,6 @@
 # Epicodus software deployment
 
-1. `brew install ansible19`
-1. `brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb`
+1. `brew install ansible19 && https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb`
 1. `git clone https://github.com/epicodus/ansible_deployment`
 1. In the **ansible_deployment** root, create a **group_vars** directory with an **all** file and add the following (make sure to update the key and passwords):
 
