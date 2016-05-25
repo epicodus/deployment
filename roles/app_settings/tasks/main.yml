@@ -64,20 +64,22 @@
   become: yes
   when: "'students' in group_names"
 
-- name: make com.bohemiancoding.sketch3 directory
-  file: path="/Library/Application Support/com.bohemiancoding.sketch3" state=directory
-  become: yes
-  when: "'students' in group_names"
-
-- name: make Sketch .deployment file
-  file: state=touch path="/Library/Application Support/com.bohemiancoding.sketch3/.deployment"
-  become: yes
-  when: "'students' in group_names"
-
-- name: add Sketch serial number to .deployment file
-  lineinfile: dest="/Library/Application Support/com.bohemiancoding.sketch3/.deployment" line="{{ sketch_key }}"
-  become: yes
-  when: "'students' in group_names"
+# SKETCH LICENSE
+# - name: make com.bohemiancoding.sketch3 directory
+#   file: path="/Library/Application Support/com.bohemiancoding.sketch3" state=directory
+#   become: yes
+#   when: "'students' in group_names"
+#
+# - name: make Sketch .deployment file
+#   file: state=touch path="/Library/Application Support/com.bohemiancoding.sketch3/.deployment"
+#   become: yes
+#   when: "'students' in group_names"
+#
+# - name: add Sketch serial number to .deployment file
+#   lineinfile: dest="/Library/Application Support/com.bohemiancoding.sketch3/.deployment" line="{{ sketch_key }}"
+#   become: yes
+#   when: "'students' in group_names"
+# SKETCH LICENSE
 # STUDENTS
 
 # STAFF
