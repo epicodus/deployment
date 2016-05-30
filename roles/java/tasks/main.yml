@@ -17,22 +17,6 @@
     - "{{ java_homebrew_dependencies }}"
 
 # STUDENTS
-- name: remove AndroidStudio1.5 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.5" state=absent
-  when: "'students' in group_names"
-
-- name: remove AndroidStudio1.6 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudio1.6" state=absent
-  when: "'students' in group_names"
-
-- name: remove AndroidStudioPreview2.0 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.0" state=absent
-  when: "'students' in group_names"
-
-- name: remove AndroidStudioPreview2.1 directory
-  file: path="{{ guest_path }}/Library/Preferences/AndroidStudioPreview2.1" state=absent
-  when: "'students' in group_names"
-
 - name: make AndroidStudio2.1 directory
   file: path="{{ guest_path }}/Library/Preferences/AndroidStudio2.1" state=directory
   when: "'students' in group_names"
@@ -72,22 +56,6 @@
 # STUDENTS
 
 # STAFF
-- name: remove AndroidStudio1.5 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio1.5" state=absent
-  when: "'staff' in group_names"
-
-- name: remove AndroidStudio1.6 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudio1.6" state=absent
-  when: "'staff' in group_names"
-
-- name: remove AndroidStudioPreview2.0 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.0" state=absent
-  when: "'staff' in group_names"
-
-- name: remove AndroidStudioPreview2.1 directory
-  file: path="{{ staff_path }}/Library/Preferences/AndroidStudioPreview2.1" state=absent
-  when: "'staff' in group_names"
-
 - name: make AndroidStudio2.1 directory
   file: path="{{ staff_path }}/Library/Preferences/AndroidStudio2.1" state=directory
   become: yes
