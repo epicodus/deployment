@@ -19,7 +19,6 @@
     java_homebrew_taps:
       - caskroom/cask
     java_homebrew_dependencies:
-      - brew-cask
       - gradle
       - javarepl
     javascript_homebrew_dependencies:

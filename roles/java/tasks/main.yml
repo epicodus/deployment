@@ -4,14 +4,17 @@
   with_items:
     - "{{ java_homebrew_taps }}"
 
-- name: install java dependencies
-  homebrew: name={{ item }}
-  with_items:
-    - "{{ java_homebrew_dependencies }}"
+- name: install brew-cask
+  homebrew: name=brew-cask
 
 - name: install java
   homebrew_cask: name=java
   become: yes
+
+- name: install java dependencies
+  homebrew: name={{ item }}
+  with_items:
+    - "{{ java_homebrew_dependencies }}"
 
 # STUDENTS
 - name: remove AndroidStudio1.5 directory
