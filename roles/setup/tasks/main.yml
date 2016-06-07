@@ -4,7 +4,7 @@
   register: homebrew_installed
 
 - name: install homebrew
-  shell: curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+  shell: curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /usr/local
   become: yes
   when: homebrew_installed.stat.exists == false
 

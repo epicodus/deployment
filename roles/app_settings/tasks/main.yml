@@ -137,6 +137,11 @@
   file: path=/Users/epicodus/chrome_auto_updates.sh state=absent
   when: "'staff' in group_names"
 
+- name: symlink atom.sh file with atom command to open Atom from command line
+  file: src=/Applications/Atom.app/Contents/Resources/app/atom.sh dest=/usr/local/bin/atom state=link
+  become: yes
+  when: "'staff' in group_names"
+
 - name: set staff permission for /Applications/Close.io.app
   file: path=/Applications/Close.io.app owner=epicodus_staff recurse=yes
   become: yes

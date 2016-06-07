@@ -14,6 +14,7 @@
 
 - name: set mysql root password
   shell: mysqladmin -u root password root
+  ignore_errors: true
 
 - name: stop mysql server
   shell: mysql.server stop
