@@ -16,6 +16,9 @@
   file: path=/Library/Caches/Homebrew owner=epicodus recurse=yes state=directory
   become: yes
 
+- name: make Caches directory
+  file: path=/Users/epicodus/Library/Caches state=directory
+
 - name: copy profiles
   copy: src={{ item }} dest=/Users/epicodus/{{ item }}
   with_items:
