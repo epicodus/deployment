@@ -5,48 +5,9 @@
     - "{{ php_homebrew_taps }}"
 
 - name: install php dependencies
-  homebrew: name={{ item.name }} install_options={{ item.options }}
+  homebrew: name={{ item }}
   with_items:
     - "{{ php_homebrew_dependencies }}"
-
-- name: start mysql server
-  shell: mysql.server start
-
-- name: set mysql root password
-  shell: mysqladmin -u root password root
-  ignore_errors: true
-
-- name: stop mysql server
-  shell: mysql.server stop
-
-- name: copy config_inc_php
-  copy: src=config_inc_php dest="/usr/local/share/phpmyadmin/config.inc.php"
-
-- name: add apache2 http.conf content
-  blockinfile:
-    dest: /usr/local/etc/apache2/2.4/httpd.conf
-    content: |
-      AddType application/x-httpd-php .php
-      DirectoryIndex index.html index.php
-      <Directory "/">
-          Require all granted
-      </Directory>
-      LoadModule expires_module libexec/mod_expires.so
-      LoadModule deflate_module libexec/mod_deflate.so
-      LoadModule rewrite_module libexec/mod_rewrite.so
-      Alias /phpmyadmin /usr/local/share/phpmyadmin
-      <Directory /usr/local/share/phpmyadmin/>
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride All
-        <IfModule mod_authz_core.c>
-          Require all granted
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-          Order allow,deny
-          Allow from all
-        </IfModule>
-      </Directory>
-      ServerName localhost
 
 # STUDENTS
 - name: copy MAMP preferences plist for Guest

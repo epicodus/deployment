@@ -34,16 +34,10 @@
       - git
       - heroku-toolbelt
     php_homebrew_dependencies:
-      - { name: 'httpd24', options: '' }
-      - { name: 'php56', options: 'with-homebrew-apxs' }
-      - { name: 'composer', options: '' }
-      - { name: 'mysql', options: '' }
-      - { name: 'phpmyadmin', options: '' }
+      - php56
+      - composer
     php_homebrew_taps:
-      - homebrew/dupes
-      - homebrew/versions
       - homebrew/php
-      - homebrew/apache
     ruby_files:
       - gemrc
       - railsrc
