@@ -92,6 +92,11 @@
   copy: src=com.apple.Terminal.plist dest="{{ guest_path }}/Library/Preferences/com.apple.Terminal.plist"
   become: yes
   when: "'students' in group_names"
+
+- name: remove restrictions for Guest
+  shell: /usr/bin/dscl . -mcxdelete /Users/Guest && rm -rf "/Library/Managed Preferences/Guest"
+  become: yes
+  when: "'students' in group_names"
 # STUDENTS
 
 # STAFF

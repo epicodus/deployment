@@ -14,11 +14,6 @@
   file: path=/opt/homebrew-cask owner=Guest recurse=yes state=directory
   become: yes
   when: "'students' in group_names"
-
-- name: remove restrictions for Guest
-  shell: /usr/bin/dscl . -mcxdelete /Users/Guest && rm -rf "/Library/Managed Preferences/Guest"
-  become: yes
-  when: "'students' in group_names"
 # STUDENTS
 
 # STAFF
